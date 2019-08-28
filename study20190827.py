@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 print 'Hello Python !!!'
 
 def f(x):
@@ -64,3 +66,59 @@ def f(a):
 
 print f(h)
 print h
+
+g = 10
+
+def f():
+    global g
+    a = g
+    g = 20
+    return a
+
+print f()
+
+l = []
+print dir(l)
+
+x = 2
+def F():
+    x = 1
+    def G():
+        print x
+    G()
+
+F()
+
+import mymath
+
+print mymath.mypi
+print mymath.add(1, 10)
+print mymath.area(10)
+
+#from tkinter import *
+#root.mainloop()
+#root.mainloop()
+
+import string
+print dir(string)
+
+string.a = 1
+print string.a
+
+mymath.a = 1
+print mymath.a
+
+class C:
+    a = 2
+    pass
+
+c = C()
+c.a = 1
+print c.a
+print c.__class__.a
+print C.a
+
+import sys
+
+#sys.path.append('~/mypythonlib')  # append
+print sys.path
