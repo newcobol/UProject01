@@ -248,3 +248,82 @@ i = Integer(10)
 print i
 print str(i)
 
+
+print "*" * 50
+
+class MyInteger1:
+    def __init__(self, i):
+        self.i = i
+    def __str__(self):
+        return str(self.i)
+    def increment(self, x):
+        self.i = self.i + x
+        return self
+    def sub(self, x):
+        self.i = self.i - x
+        return self
+
+k = MyInteger1(10)
+print k                  # 10
+k = k.increment(5)
+print k                  # 15
+k = k.sub(10)
+print k                  # 5
+
+
+class Integer:
+    def __init__(self, i):
+        self.i = i
+    def __str__(self):
+        return str(self.i)
+    def __add__(self, other):
+        return self.i + other
+
+i = Integer(10)
+print i
+print str(i)
+
+print
+i = i + 10
+print i
+
+print
+i += 10
+print i
+
+class MyString:
+    def __init__(self,  str):
+        self.str = str
+    def __div__(self, sep):   # 나누기 연산자 /가 사용
+        return self.str.split(sep)
+    __rdiv__ = __div__     # print "_" / m
+    #__invert__ = __neg__
+
+m = MyString("abcd_abcd_abcd")
+print m / "_"  # sep
+print m / "_a" # sep
+
+print "_" / m
+print "_a" / m
+
+print
+print m.__div__("_")
+
+class MyCmp:
+    def __cmp__(self, y):
+        return 1 - y
+
+c = MyCmp()
+print c > 1    # c.__cmp__(1)을 호출, 반환값이 양수이어야 True
+print c < 1    # c.__cmp__(1)을 호출, 반환값이 음수이어야 True
+print c == 1   # c.__cmp__(1)을 호출, 반환값이 0이어야  True
+
+
+class MyCmp2:
+    def __lt__(self, y):
+        return 1 < y
+
+m = MyCmp2()
+print m < 10   # m.__lt__(10)을 호출
+print m < 2
+print m < 1
