@@ -122,3 +122,27 @@ import sys
 
 #sys.path.append('~/mypythonlib')  # append
 print sys.path
+
+mypi = 3.141592
+from mymath import area, mypi
+print area(5)
+print mypi
+
+from mymath import *
+print add(1, 2)
+
+import string as chstr
+print chstr
+print
+print chstr.punctuation
+
+import mymath as mym
+print mymath
+print mym.mypi
+
+from string import replace as substitue, upper as up
+print substitue
+print substitue('ham chicken spam', 'chicken', 'egg')
+print up
+print up('sbc')
+
