@@ -234,7 +234,7 @@ class Life:
 def test():
     mylife = Life()
     print 'Sleeping for 3 sec'
-    sleep(3)        # 3초간 sleep(block) 상태에 있음 (CPU 점유 못함)
+#    sleep(3)        # 3초간 sleep(block) 상태에 있음 (CPU 점유 못함)
 
 test()
 
@@ -327,3 +327,80 @@ m = MyCmp2()
 print m < 10   # m.__lt__(10)을 호출
 print m < 2
 print m < 1
+
+print "*" * 50
+
+class MyCmp3:
+    def __eq__(self, y):
+        return 1 == y
+
+m = MyCmp3()
+print m == 10
+m1 = MyCmp3()
+print m == 1
+
+class MyCmp4:
+    def __init__(self, value):
+        self.value = value
+    def __cmp__(self, other):
+        if self.value == other:
+            return 0
+m2 = MyCmp4(10)
+print m2 == 10
+
+print "*" * 50
+class Square:
+    def __init__(self, end):
+        self.end = end
+    def __len__(self):
+        return self.end
+    def __getitem__(self, k):
+        if k < 0 or self.end <= k:
+            raise IndexError, k
+        return k * k
+
+s1 = Square(10)
+print len(s1)
+print s1[1]
+print s1[4]
+#print s1[20]
+
+s1 = Square(10)
+for x in s1:    # s1[0], s1[1], s1[2], s1[3] ... s1[9],
+    print x,
+print
+print  "*" * 50
+print list(s1)
+print tuple(s1)
+
+print "*" * 50
+
+class MyDict:
+    def __init__(self, d = None):
+        if d == None: d = {}
+        self.d = d
+    def __getitem__(self, k): #key
+        return self.d[k]
+    def __setitem__(self, k, v):
+        self.d[k] = v
+    def __len__(self):
+        return len(self.d)
+    def keys(self):
+        return self.d.keys()
+    def values(self):
+        return self.d.values()
+    def items(self):
+        return self.d.items()
+
+m = MyDict()            # __init__ 호출
+m['day'] = 'light'
+m['night'] = 'darkness'
+print m
+print m['day']          # light
+print m['night']        # darkness
+print len(m)            # 2
+
+m = MyDict({'one':1, 'two':2, 'three':3})
+print m.keys()
+print m.values()
+print m.items()
